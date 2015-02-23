@@ -15,12 +15,13 @@ Here is a [demo instance](https://alpha.sandstorm.io/grain/hk4cb7b6TDo3st3RMroKA
 ## Building
 
 To run locally without Sandstorm:
+
     $ curl https://install.meteor.com/ | sh
     $ meteor run
 
 To run with Sandstorm, follow the instructions at https://github.com/sandstorm-io/meteor-spk to download Sandstorm and meteor-spk. Run `meteor-spk build path/to/package.spk` to build the Sandstorm package. Then load the package into a Sandstorm instance after logging in - you can either [set up](https://github.com/sandstorm-io/sandstorm#installing-the-easy-way) a local instance or just use https://alpha.sandstorm.io.
 
-Caveat: Local instances that are running without HTTPS will not work in Chrome since WebCrypto access is considered a sensitive feature.
+*Caveat: Local instances that are running without HTTPS at an aliased URL like local.sandstorm.io will not work in Chrome since WebCrypto access is considered a sensitive feature.*
 
 
 ## License
