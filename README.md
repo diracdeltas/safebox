@@ -2,7 +2,7 @@
 
 ## Overview
 
-A simple (Meteor)[https://meteor.com] + (Sandstorm)[https://sandstorm.io] app for sharing client-side encrypted files. Requires a browser with a working implementation of the AES-GCM webcrypto API. Stable releases of Chrome/Firefox should work, though note that Chrome restricts WebCrypto access to [secure origins](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
+A simple [Meteor](https://meteor.com) + [Sandstorm](https://sandstorm.io) app for sharing client-side encrypted files. Requires a browser with a working implementation of the AES-GCM webcrypto API. Stable releases of Chrome/Firefox should work, though note that Chrome restricts WebCrypto access to [secure origins](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
 
 ### !! Warning !!
 
@@ -10,7 +10,7 @@ Do not use this for anything that requires better-than-plaintext securty, given 
 
 ### Demo
 
-Here is a (demo instance)[https://alpha.sandstorm.io/grain/hk4cb7b6TDo3st3RMroKAF]. If you want a bunny, the password is `iloveoctocats`.
+Here is a [demo instance](https://alpha.sandstorm.io/grain/hk4cb7b6TDo3st3RMroKAF). If you want a bunny, the password is `iloveoctocats`.
 
 ## License
 
