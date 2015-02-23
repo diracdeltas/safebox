@@ -4,20 +4,17 @@ var scrypt;
 /**
  * Derives a key using scrypt.
  * @param {string} passphrase
+ * @param {Uint8Array} salt
  * @return {Uint8Array}
  */
-function deriveKey(passphrase) {
-  if (!scrypt) {
-    console.error('Missing scrypt!');
+function deriveKey(passphrase, salt) {
+  if (!scrypt || !salt) {
     return null;
   }
 
-  // Assumes each instance is at a separate origin
-  var salt = window.location.origin;
-
   // Compute a 16-byte scrypt key with L=2^20, r =8, p=1
   return scrypt.crypto_scrypt(scrypt.encode_utf8(passphrase),
-      scrypt.encode_utf8(salt), 16384, 8, 1, 16);
+      salt, 16384, 8, 1, 16);
 }
 
 /**
@@ -77,8 +74,9 @@ function decryptFile(ciphertext, key, iv) {
  * Reads and processes a file
  * @param {!File} file
  * @param {!Uint8Array} key
+ * @param {!Uint8Array} salt
  */
-function readAndProcessFile(file, key) {
+function readAndProcessFile(file, key, salt) {
   var reader = new FileReader();
   reader.onload = function() {
     // Use NIST-recommended IV length of 96 bits
@@ -90,6 +88,7 @@ function readAndProcessFile(file, key) {
         name: file.name,
         ciphertext: new Uint8Array(result),
         iv: iv,
+        salt: salt,
         createdAt: new Date()
       });
     }).catch(function(reason) {
@@ -127,25 +126,15 @@ if (Meteor.isClient) {
       if (passphrase === null) {
         return;
       }
-      /*
-      var passphrase2 = window.prompt('Confirm passphrase:');
-      if (passphrase2 === null) {
-        return;
-      }
 
-      if (passphrase !== passphrase2) {
-        window.alert("Passphrases do not match!");
-        return;
-      }
-      */
-
-      var key = deriveKey(passphrase);
+      var salt = window.crypto.getRandomValues(new Uint8Array(10));
+      var key = deriveKey(passphrase, salt);
       if (key === null) {
         return;
       }
 
       for (var i = 0; i < selectedFiles.length; i++) {
-        readAndProcessFile(selectedFiles[i], key);
+        readAndProcessFile(selectedFiles[i], key, salt);
       }
     },
 
@@ -168,7 +157,7 @@ if (Meteor.isClient) {
         // User clicked 'cancel'
         return;
       }
-      var key = deriveKey(passphrase);
+      var key = deriveKey(passphrase, item.salt);
       if (key === null) {
         showError('Error deriving encryption key!');
         return;
@@ -178,7 +167,13 @@ if (Meteor.isClient) {
         var blob = new Blob([result],
                             {type: 'application/octet-stream'});
         var url = URL.createObjectURL(blob);
-        window.location.href = url;
+
+        var downloadLink = $('ul.' + id);
+        var linkElement = downloadLink.find('a');
+        linkElement.attr('href', url);
+        linkElement.attr('target', '_blank');
+
+        downloadLink.show();
       }).catch(function(reason) {
         showError('Could not decrypt file.');
       });

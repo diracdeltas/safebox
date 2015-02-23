@@ -1,6 +1,6 @@
 # Safebox
 
-A simple Meteor app that encrypts files on the client side using a passphrase. Requires a browser with a working implementation of the AES-GCM webcrypto API. (Stable releases of Chrome/Firefox should work.)
+A simple Meteor app that encrypts files on the client side using a passphrase. Requires a browser with a working implementation of the AES-GCM webcrypto API. Stable releases of Chrome/Firefox should work, though note that Chrome restricts WebCrypto access to [secure origins](https://www.chromium.org/Home/chromium-security/prefer-secure-origins-for-powerful-new-features).
 
 License: GPLv3 &copy; 2015, Yan Zhu. All rights reserved.
 

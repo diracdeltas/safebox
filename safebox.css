@@ -2,3 +2,6 @@
 #error-div {
   color: red;
 }
+.hidden {
+  display: none;
+}

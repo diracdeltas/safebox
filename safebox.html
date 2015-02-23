@@ -29,5 +29,10 @@
 </template>
 
 <template name="fileView">
-<li><a href="#" class="file-link" id="{{_id}}">{{name}}</a></li>
+<li>
+  <a href="#" class="file-link" id="{{_id}}">{{name}}</a>
+  <ul class="hidden {{_id}}">
+      <li><a>Download decrypted file</a></li>
+  </ul>
+</li>
 </template>
