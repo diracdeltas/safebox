@@ -171,7 +171,11 @@ if (Meteor.isClient) {
         var downloadLink = $('ul.' + id);
         var linkElement = downloadLink.find('a');
         linkElement.attr('href', url);
-        linkElement.attr('download', item.name);
+        if (window.chrome) {
+          // Setting 'download' prevents downloading in iframe in Firefox
+          // TODO: Is this a Firefox bug??
+          linkElement.attr('download', item.name);
+        }
         linkElement.attr('target', '_blank');
 
         downloadLink.show();
