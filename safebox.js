@@ -171,6 +171,7 @@ if (Meteor.isClient) {
         var downloadLink = $('ul.' + id);
         var linkElement = downloadLink.find('a');
         linkElement.attr('href', url);
+        linkElement.attr('download', item.name);
         linkElement.attr('target', '_blank');
 
         downloadLink.show();
