@@ -3,6 +3,7 @@
 </head>
 
 <body>
+  <div id="error-div"></div>
   <h2>Download files</h2>
   <div id="download-files">
     <ul>
@@ -22,19 +23,10 @@
     <input type="file" id="files" multiple>
   </div>
   <div>
-    <label for="passphrase">Pick a passphrase:</label>
-    <input type="password" id="passphrase" >
+    <button id="submit">Encrypt and upload files</button>
   </div>
-  <div>
-    <label for="passphrase-confirm">Confirm passphrase:</label>
-    <input type="password" id="passphrase-confirm" >
-  </div>
-  <div>
-    <button id="submit">Upload files!</button>
-  </div>
-  <p>You've pressed the button {{counter}} times.</p>
 </template>
 
 <template name="fileView">
-  <li>{{text}}</li>
+<li><a href="#" class="file-link" id="{{_id}}">{{name}}</a></li>
 </template>
