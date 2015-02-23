@@ -2,9 +2,9 @@
 
 A simple Meteor app that encrypts files on the client side using a passphrase. Requires a browser with a working implementation of the AES-GCM webcrypto API. (Stable releases of Chrome/Firefox should work.)
 
-License: GPLv3
+License: GPLv3 &copy; 2015, Yan Zhu. All rights reserved.
 
-This project uses (js-scrypt)[https://github.com/tonyg/js-scrypt] for key derivation, written by Tony Garnock-Jones and licensed under the 2-clause BSD license:
+This project uses [js-scrypt](https://github.com/tonyg/js-scrypt) for key derivation, written by Tony Garnock-Jones and licensed under the 2-clause BSD license:
 
 > Copyright &copy; 2013, Tony Garnock-Jones
 > All rights reserved.
