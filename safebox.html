@@ -3,8 +3,9 @@
 </head>
 
 <body>
+  <h1>hey! share some encrypted files!</h1>
   <div id="error-div"></div>
-  <h2>Download files</h2>
+  <h2>download files:</h2>
   <div id="download-files">
     <ul>
     {{#each fileViews}}
@@ -13,7 +14,7 @@
     </ul>
   </div>
 
-  <h2>Add files</h2>
+  <h2>upload files:</h2>
 
   {{> main}}
 </body>
@@ -23,7 +24,7 @@
     <input type="file" id="files" multiple>
   </div>
   <div>
-    <button id="submit">Encrypt and upload files</button>
+    <button id="submit">Encrypt and upload</button>
   </div>
 </template>
 

@@ -118,6 +118,11 @@ if (Meteor.isClient) {
       showError();
       var selectedFiles = $('#files')[0].files;
 
+      if (selectedFiles.length === 0) {
+        showError('Please select at least one file.');
+        return;
+      }
+
       var passphrase = window.prompt('Enter file passphrase:');
       if (passphrase === null) {
         return;
