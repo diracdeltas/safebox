@@ -12,9 +12,9 @@ function deriveKey(passphrase, salt) {
     return null;
   }
 
-  // Compute a 16-byte scrypt key with L=2^20, r =8, p=1
+  // Compute a 16-byte scrypt key with L=2^16, r =8, p=1
   return scrypt.crypto_scrypt(scrypt.encode_utf8(passphrase),
-      salt, 16384, 8, 1, 16);
+      salt, 65536, 8, 1, 16);
 }
 
 /**
@@ -25,11 +25,10 @@ function deriveKey(passphrase, salt) {
  * @return {Promise}
  */
 function encryptFile(plaintext, key, iv) {
-  // TODO: Is it sufficient/necessary to store the IV as ADATA?
   var algorithm = {
     name: 'aes-gcm',
     iv: iv,
-    additionalData: iv,
+    additionalData: new Uint8Array(),
     tagLength: 128
   };
 
@@ -55,7 +54,7 @@ function decryptFile(ciphertext, key, iv) {
   var algorithm = {
     name: 'aes-gcm',
     iv: iv,
-    additionalData: iv,
+    additionalData: new Uint8Array(),
     tagLength: 128
   };
 
@@ -110,7 +109,7 @@ function showError(opt_error) {
 }
 
 if (Meteor.isClient) {
-  scrypt = scrypt_module_factory();
+  scrypt = scrypt_module_factory(0x6000000);
 
   Template.body.events({
     'click button': function (event) {
